@@ -52,6 +52,13 @@ export default class OTPublisher extends Component {
 
   componentWillUnmount() {
     if (this.state.session) {
+
+      const subscriberStream = this.state.session.getSubscribersForStream();
+
+      if (subscriberStream.length && typeof subscriberStream[0] === 'object') {
+        this.state.session.forceDisconnect(subscriberStream[0]);
+      }
+
       this.state.session.off('sessionConnected', this.sessionConnectedHandler);
     }
 

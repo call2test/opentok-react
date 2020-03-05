@@ -1,6 +1,6 @@
 {
   "name": "opentok-react-c2t",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "React components for OpenTok.js (fork)",
   "main": "dist/index.js",
   "scripts": {

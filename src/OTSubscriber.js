@@ -95,7 +95,7 @@ export default class OTSubscriber extends Component {
         typeof this.props.eventHandlers === 'object'
       ) {
         this.state.subscriber.once('destroyed', () => {
-          if (this.props.onUnsubscribe && 'function' === typeof this.props.onUnsubscribe) {
+          if (this.props.onUnsubscribe && typeof this.props.onUnsubscribe === 'function') {
             this.props.onUnsubscribe();
           }
           this.state.subscriber.off(this.props.eventHandlers);
@@ -124,6 +124,7 @@ OTSubscriber.propTypes = {
   properties: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   eventHandlers: PropTypes.objectOf(PropTypes.func),
   onSubscribe: PropTypes.func,
+  onUnsubscribe: PropTypes.func,
   onError: PropTypes.func,
 };
 
@@ -133,6 +134,7 @@ OTSubscriber.defaultProps = {
   properties: {},
   eventHandlers: null,
   onSubscribe: null,
+  onUnsubscribe: null,
   onError: null,
 };
 

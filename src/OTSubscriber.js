@@ -95,6 +95,9 @@ export default class OTSubscriber extends Component {
         typeof this.props.eventHandlers === 'object'
       ) {
         this.state.subscriber.once('destroyed', () => {
+          if (this.props.onUnsubscribe && 'function' === typeof this.props.onUnsubscribe) {
+            this.props.onUnsubscribe();
+          }
           this.state.subscriber.off(this.props.eventHandlers);
         });
       }

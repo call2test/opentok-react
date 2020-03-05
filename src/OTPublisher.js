@@ -52,15 +52,10 @@ export default class OTPublisher extends Component {
 
   componentWillUnmount() {
     if (this.state.session) {
-      if (this.state.session.connection) {
-        this.state.session.forceDisconnect(this.state.session.connection[1], (err) => {
-          if (!err) {
-            this.state.session.off('sessionConnected', this.sessionConnectedHandler);
-            this.destroyPublisher();
-          }
-        });
-      }
+      this.state.session.off('sessionConnected', this.sessionConnectedHandler);
     }
+
+    this.destroyPublisher();
   }
 
   getPublisher() {
